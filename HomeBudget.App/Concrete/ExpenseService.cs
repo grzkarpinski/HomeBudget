@@ -1,4 +1,5 @@
 ﻿using HomeBudget.App.Common;
+using HomeBudget.App.helpers;
 using HomeBudget.Domain.Entity;
 using HomeBudget.Domain.Helpers;
 using System;
@@ -34,9 +35,9 @@ namespace HomeBudget.App.Concrete
 
             string whoPaid = GetBuyer(buyersList);
 
-            decimal price = GetCost();
+            decimal price = HelpersMethods.GetCost();
 
-            DateTime purchaseDate = GetDate();
+            DateTime purchaseDate = HelpersMethods.GetDate();
 
             Expense newItem = new Expense
             {
@@ -191,48 +192,6 @@ namespace HomeBudget.App.Concrete
             }
 
             return whoPaid;
-        }
-
-        private decimal GetCost()
-        {
-            bool validCost = false;
-            decimal price = 0;
-            while (!validCost)
-            {
-                Console.WriteLine("Enter cost (XX,XX) PLN:");
-                if (decimal.TryParse(Console.ReadLine(), out price))
-                {
-                    Console.WriteLine("ok");
-                    validCost = true;
-                }
-                else
-                {
-                    Console.WriteLine("Wrong value...");
-                }
-            }
-            return price;
-        }
-
-        private DateTime GetDate()
-        {
-            DateTime purchaseDate;
-
-            while (true)
-            {
-                Console.WriteLine("Enter purchase date (YYYY-MM-DD):");
-                string inputDate = Console.ReadLine();
-
-                if (DateTime.TryParse(inputDate, out purchaseDate))
-                {
-                    Console.WriteLine("ok");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Wrong date format. Please try again...");
-                }
-            }
-            return purchaseDate;
         }
 
         private List<Expense> GetCurrentMonthExpenses(List<Expense> items, int currentYear, int currentMonth)

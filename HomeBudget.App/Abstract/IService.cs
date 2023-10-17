@@ -13,7 +13,5 @@ namespace HomeBudget.App.Abstract
         List<T> GetAllItems();
         public void AddItem();
         public void RemoveItem();
-        public void PrintAllItems();
-        void WhoPays(List<T> buyersList);
     }
 }

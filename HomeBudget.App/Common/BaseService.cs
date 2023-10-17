@@ -24,15 +24,7 @@ namespace HomeBudget.App.Common
             return Items;
         }
 
-        public void PrintAllItems()
-        {
-        }
-
         public void RemoveItem()
-        {
-        }
-
-        public void WhoPays(List<T> buyersList)
         {
         }
     }

@@ -1,4 +1,6 @@
-﻿using HomeBudget.Domain.Entity;
+﻿using HomeBudget.App.Abstract;
+using HomeBudget.App.Common;
+using HomeBudget.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HomeBudget.App.Concrete
 {
-    public class BuyerService
+    public class BuyerService: BaseService<Buyer>
     {
         private List<Buyer> buyers;
         private int BuyerId;
@@ -17,7 +19,10 @@ namespace HomeBudget.App.Concrete
             buyers = new List<Buyer>();
             BuyerId = 1;
         }
-
+        public List<Buyer> getBuyersList()
+        {
+            return buyers;
+        }
         public void AddBuyer(string name)
         {
             string buyerName = name.ToUpper();
@@ -31,9 +36,37 @@ namespace HomeBudget.App.Concrete
 
             BuyerId++;
         }
-        public List<Buyer> getBuyersList()
+        public void RemoveBuyer()
         {
-            return buyers;
+            if (buyers.Count == 0)
+            {
+                Console.WriteLine("List is already empty.");
+                return;
+            }
+
+            Console.WriteLine("Enter Id of buyer you want to remove:");
+            if (int.TryParse(Console.ReadLine(), out int idToRemove))
+            {
+                Buyer itemToRemove = null;
+                foreach (Buyer item in buyers)
+                {
+                    if (item.Id == idToRemove)
+                    {
+                        itemToRemove = item;
+                        break;
+                    }
+                }
+
+                if (itemToRemove != null)
+                {
+                    buyers.Remove(itemToRemove);
+                    Console.WriteLine($"Shopping Id {idToRemove} was removed.");
+                }
+                else
+                {
+                    Console.WriteLine($"Cannot find Id {idToRemove} on list.");
+                }
+            }
         }
     }
 }
