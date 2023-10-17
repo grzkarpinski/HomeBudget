@@ -132,29 +132,34 @@ namespace HomeBudget.App.Concrete
                 currentMonthItems = GetCurrentMonthExpenses(_items, currentYear, currentMonth);
                 total = GetTotalExpenses(currentMonthItems);
                 Console.WriteLine($"Total sum of expenses last month ({DateTime.Now.ToString("MM-yyyy")}): {total} PLN");
-
             }
-
-            foreach (Buyer whoPaid in buyersList)
+            if (total == 0)
             {
-                decimal sumForWhoPaid = 0;
-                foreach (Expense item in currentMonthItems)
+                Console.WriteLine("Where was also no shopping last month. Pick someone random :)");
+            }
+            else
+            {
+                foreach (Buyer whoPaid in buyersList)
                 {
-                    if (item.WhoPaid == whoPaid.Name)
+                    decimal sumForWhoPaid = 0;
+                    foreach (Expense item in currentMonthItems)
                     {
-                        sumForWhoPaid += item.Price;
+                        if (item.WhoPaid == whoPaid.Name)
+                        {
+                            sumForWhoPaid += item.Price;
+                        }
+                    }
+
+                    Console.WriteLine($"{whoPaid.Name} - paid for: {sumForWhoPaid} PLN");
+
+                    if (sumForWhoPaid <= lowest)
+                    {
+                        lowest = sumForWhoPaid;
+                        personWhoPays = whoPaid.Name;
                     }
                 }
-
-                Console.WriteLine($"{whoPaid.Name} - paid for: {sumForWhoPaid} PLN");
-
-                if (sumForWhoPaid <= lowest)
-                {
-                    lowest = sumForWhoPaid;
-                    personWhoPays = whoPaid.Name;
-                }
+                Console.WriteLine($"{personWhoPays} pays for next shopping.");
             }
-            Console.WriteLine($"{personWhoPays} pays for next shopping.");
         }
 
         private string GetBuyer(List<Buyer> buyersList)
