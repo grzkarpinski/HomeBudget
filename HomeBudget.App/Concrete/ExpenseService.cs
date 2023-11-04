@@ -19,7 +19,6 @@ namespace HomeBudget.App.Concrete
         public ExpenseService()
         {
             _items = new List<Expense>();
-            nextId = 1;
         }
 
         public List<Expense> GetAllExpenses()
@@ -42,7 +41,7 @@ namespace HomeBudget.App.Concrete
 
             Expense newItem = new Expense
             {
-                Id = nextId,
+                Id = HelpersMethods.GenerateNextId(_items),
                 Name = name,
                 Category = category,
                 WhoPaid = whoPaid,

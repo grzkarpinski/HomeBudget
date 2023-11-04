@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HomeBudget.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,6 +49,26 @@ namespace HomeBudget.App.helpers
                 }
             }
             return price;
+        }
+
+        public static int GenerateNextId<T>(List<T> items) where T : BaseEntity 
+        {
+            if (items.Count == 0) 
+            {
+                return 1;
+            }
+            else 
+            {
+                int maxId = int.MinValue;
+                foreach (var item in items)
+                {
+                    if (item.Id > maxId)
+                    {
+                        maxId = item.Id;
+                    }
+                }
+                return maxId + 1;
+            }
         }
     }
 }

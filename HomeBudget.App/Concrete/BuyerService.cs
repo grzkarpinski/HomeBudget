@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HomeBudget.App.helpers;
 
 namespace HomeBudget.App.Concrete
 {
@@ -17,7 +18,6 @@ namespace HomeBudget.App.Concrete
         public BuyerService()
         {
             buyers = new List<Buyer>();
-            BuyerId = 1;
         }
         public List<Buyer> getBuyersList()
         {
@@ -29,7 +29,7 @@ namespace HomeBudget.App.Concrete
 
             Buyer newBuyer = new Buyer()
             {
-                Id = BuyerId,
+                Id = HelpersMethods.GenerateNextId(buyers),
                 Name = buyerName,
             };
             buyers.Add(newBuyer);
