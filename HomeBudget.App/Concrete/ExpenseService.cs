@@ -1,6 +1,7 @@
 ﻿using HomeBudget.App.Common;
 using HomeBudget.App.helpers;
 using HomeBudget.Domain.Entity;
+using HomeBudget.Domain.Enums;
 using HomeBudget.Domain.Helpers;
 using System;
 using System.Collections.Generic;

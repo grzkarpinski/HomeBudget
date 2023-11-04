@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeBudget.Domain.Helpers
+namespace HomeBudget.Domain.Enums
 {
     public enum PurchaseCategory
     {
