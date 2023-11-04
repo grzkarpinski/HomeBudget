@@ -8,9 +8,8 @@ namespace HomeBudget.App.Abstract
 {
     public interface IService<T>
     {
-        List<T> Items { get; set; }
-
-        List<T> GetAllItems();
+        public List<T> Items { get; set; }
+        public List<T> GetAllItems();
         public void AddItem();
         public void RemoveItem();
     }
