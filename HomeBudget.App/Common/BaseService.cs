@@ -15,16 +15,16 @@ namespace HomeBudget.App.Common
         {
             Items = new List<T>();
         }
-        public void AddItem()
+        public virtual void AddItem()
         {
         }
 
-        public List<T> GetAllItems()
+        public virtual List<T> GetAllItems()
         {
             return Items;
         }
 
-        public void RemoveItem()
+        public virtual void RemoveItem()
         {
         }
     }
