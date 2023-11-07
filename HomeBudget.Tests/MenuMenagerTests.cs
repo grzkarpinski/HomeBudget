@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HomeBudget.Menu;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,21 @@ namespace HomeBudget.Tests
             Assert.Single(testMenuManager.Items);
             Assert.Equal(text, testMenuManager.Items[0].Text);
             Assert.Equal(action, testMenuManager.Items[0].Action);
+        }
+
+        [Fact]
+        public void DrawTest() 
+        {
+            var expectedOutput = "MENU:\r\n1. test text\r\n\r\nChoose option number: ";
+            var testMenuManager = new MenuManager();
+            testMenuManager.AddItem("test text", () => Console.WriteLine("test action"));
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+
+            testMenuManager.Draw();
+            var actualOutput = consoleOutput.ToString();
+
+            Assert.Equal(expectedOutput, actualOutput);
         }
     }
 }
