@@ -24,4 +24,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HomeBudget.App\HomeBudget.App.csproj" />
+    <ProjectReference Include="..\HomeBudget.Domain\HomeBudget.Domain.csproj" />
+    <ProjectReference Include="..\HomeBudget.Menu\HomeBudget.Menu.csproj" />
+  </ItemGroup>
+
 </Project>

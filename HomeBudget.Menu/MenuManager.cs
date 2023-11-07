@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeBudget.Menu
 {
-    public class MenuMenager
+    public class MenuManager
     {
         public List<MenuItem> Items { get; } = new List<MenuItem>();
 

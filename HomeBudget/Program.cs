@@ -10,7 +10,7 @@ List<Buyer> allBuyers = buyers.getBuyersList();
 
 ExpenseService itemService = new ExpenseService();
 
-MenuMenager mainMenu = new MenuMenager();
+MenuManager mainMenu = new MenuManager();
 mainMenu.AddItem("Add Expense", () => itemService.AddExpense(allBuyers));
 mainMenu.AddItem("Remove Expense", () => itemService.RemoveExpense());
 mainMenu.AddItem("Who Pays for Next Shopping?", () => itemService.WhoPays(allBuyers));
