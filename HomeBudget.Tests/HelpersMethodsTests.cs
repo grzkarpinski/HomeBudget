@@ -54,5 +54,19 @@ namespace HomeBudget.Tests
             // Assert
             Assert.Equal(4, result);
         }
+
+        [Fact]
+        public void GetExpenseNameTest() 
+        {
+            // Arrange
+            var input = new StringReader("test");
+            Console.SetIn(input);
+
+            // Act
+            var result = HelpersMethods.GetExpenseName();
+
+            // Assert
+            Assert.Equal("test", result);
+        }
     }
 }

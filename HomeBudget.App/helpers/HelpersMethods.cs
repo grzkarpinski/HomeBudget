@@ -70,5 +70,12 @@ namespace HomeBudget.App.helpers
                 return maxId + 1;
             }
         }
+
+        public static string GetExpenseName()
+        {
+            Console.WriteLine("Enter short description:");
+            string ExpenseName = Console.ReadLine();
+            return ExpenseName;
+        }
     }
 }

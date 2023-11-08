@@ -27,8 +27,9 @@ namespace HomeBudget.App.Concrete
 
         public void AddExpense(List<Buyer> buyersList)
         {
-            Console.WriteLine("Enter short description:");
-            string name = Console.ReadLine();
+            int nextId = HelpersMethods.GenerateNextId(_items);
+
+            string name = HelpersMethods.GetExpenseName();
 
             PurchaseCategory category = PurchaseCategoryService.GetCategory();
 
@@ -40,7 +41,7 @@ namespace HomeBudget.App.Concrete
 
             Expense newItem = new Expense
             {
-                Id = HelpersMethods.GenerateNextId(_items),
+                Id = nextId,
                 Name = name,
                 Category = category,
                 WhoPaid = whoPaid,
