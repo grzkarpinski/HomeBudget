@@ -61,7 +61,8 @@ namespace HomeBudget.App.Concrete
             }
 
             Console.WriteLine("Enter Id of shopping you want to remove:");
-            if (int.TryParse(Console.ReadLine(), out int idToRemove))
+            int idToRemove = HelpersMethods.GetIdToRemove();
+            if (idToRemove != 0)
             {
                 Expense itemToRemove = null;
                 foreach (Expense item in _items)

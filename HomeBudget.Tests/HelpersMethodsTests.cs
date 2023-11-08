@@ -68,5 +68,19 @@ namespace HomeBudget.Tests
             // Assert
             Assert.Equal("test", result);
         }
+
+        [Fact]
+        public void GetIdToRemoveTest()
+        {
+            // Arrange
+            var input = new StringReader("1");
+            Console.SetIn(input);
+
+            // Act
+            var result = HelpersMethods.GetIdToRemove();
+
+            // Assert
+            Assert.Equal(1, result);
+        }
     }
 }

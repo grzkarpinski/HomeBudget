@@ -1,4 +1,6 @@
-﻿using HomeBudget.Domain.Common;
+﻿using HomeBudget.App.Abstract;
+using HomeBudget.App.Common;
+using HomeBudget.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HomeBudget.App.helpers
 {
-    public class HelpersMethods
+    public class HelpersMethods: HelpersMethodsBase
     {
         public static DateTime GetDate()
         {
@@ -76,6 +78,19 @@ namespace HomeBudget.App.helpers
             Console.WriteLine("Enter short description:");
             string ExpenseName = Console.ReadLine();
             return ExpenseName;
+        }
+
+        public static int GetIdToRemove() 
+        {
+            if (int.TryParse(Console.ReadLine(), out int idToRemove))
+            {
+                return idToRemove;
+            }
+            else
+            {
+                Console.WriteLine("Wrong value...");
+                return 0;
+            }
         }
     }
 }
