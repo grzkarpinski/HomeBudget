@@ -14,7 +14,6 @@ namespace HomeBudget.App.Concrete
     public class ExpenseService : BaseService<Expense>
     {
         private List<Expense> _items;
-        private int nextId;
 
         public ExpenseService()
         {
@@ -51,7 +50,6 @@ namespace HomeBudget.App.Concrete
 
             _items.Add(newItem);
 
-            nextId++;
         }
         public void RemoveExpense()
         {

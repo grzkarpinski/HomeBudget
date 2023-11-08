@@ -13,7 +13,6 @@ namespace HomeBudget.App.Concrete
     public class BuyerService: BaseService<Buyer>
     {
         private List<Buyer> buyers;
-        private int BuyerId;
 
         public BuyerService()
         {
@@ -34,7 +33,6 @@ namespace HomeBudget.App.Concrete
             };
             buyers.Add(newBuyer);
 
-            BuyerId++;
         }
         public void RemoveBuyer()
         {
