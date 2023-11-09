@@ -66,5 +66,34 @@ namespace HomeBudget.App.Concrete
                 }
             }
         }
+
+        public void RemoveBuyer(int idToRemove)
+        {
+            if (buyers.Count == 0)
+            {
+                Console.WriteLine("List is already empty.");
+                return;
+            }
+
+            Buyer itemToRemove = null;
+            foreach (Buyer item in buyers)
+            {
+                if (item.Id == idToRemove)
+                {
+                    itemToRemove = item;
+                    break;
+                }
+            }
+
+            if (itemToRemove != null)
+            {
+                buyers.Remove(itemToRemove);
+                Console.WriteLine($"Shopping Id {idToRemove} was removed.");
+            }
+            else
+            {
+                Console.WriteLine($"Cannot find Id {idToRemove} on list.");
+            }
+        }
     }
 }
