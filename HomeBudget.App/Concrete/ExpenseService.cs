@@ -49,7 +49,7 @@ namespace HomeBudget.App.Concrete
                 PurchaseDate = purchaseDate
             };
 
-            _items.Add(newItem);
+            AddExpense(newItem);
 
         }
 
@@ -62,43 +62,18 @@ namespace HomeBudget.App.Concrete
         {
             if (_items.Count == 0)
             {
-                Console.WriteLine("List is already empty.");
+                Console.WriteLine("List is already   empty.");
                 return;
             }
 
             Console.WriteLine("Enter Id of shopping you want to remove:");
             int idToRemove = HelpersMethods.GetIdToRemove();
-            if (idToRemove != 0)
-            {
-                Expense itemToRemove = null;
-                foreach (Expense item in _items)
-                {
-                    if (item.Id == idToRemove)
-                    {
-                        itemToRemove = item;
-                        break;
-                    }
-                }
 
-                if (itemToRemove != null)
-                {
-                    _items.Remove(itemToRemove);
-                    Console.WriteLine($"Shopping Id {idToRemove} was removed.");
-                }
-                else
-                {
-                    Console.WriteLine($"Cannot find Id {idToRemove} on list.");
-                }
-            }
+            RemoveExpense(idToRemove);
         }
 
         public void RemoveExpense(int idToRemove)
         {
-            if (_items.Count == 0)
-            {
-                Console.WriteLine("List is already empty.");
-                return;
-            }
 
             if (idToRemove != 0)
             {
