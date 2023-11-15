@@ -1,5 +1,7 @@
-﻿using HomeBudget.App.helpers;
+﻿using HomeBudget.App.Concrete;
+using HomeBudget.App.helpers;
 using HomeBudget.Domain.Common;
+using HomeBudget.Domain.Entity;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -81,6 +83,27 @@ namespace HomeBudget.Tests
 
             // Assert
             Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void GetBuyerTest()
+        {
+            // Arrange
+            var buyerService = new BuyerService();
+            buyerService.AddBuyer("Ewelina");
+            buyerService.AddBuyer("Grzegorz");
+            List<Buyer> allBuyers = buyerService.getBuyersList();
+
+            var expenseService = new ExpenseService();
+
+            var input = new StringReader("2");
+            Console.SetIn(input);
+
+            // Act
+            var result = HelpersMethods.GetBuyer(allBuyers);
+
+            // Assert
+            Assert.Equal("GRZEGORZ", result);
         }
     }
 }

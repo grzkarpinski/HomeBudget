@@ -33,7 +33,7 @@ namespace HomeBudget.App.Concrete
 
             PurchaseCategory category = PurchaseCategoryService.GetCategory();
 
-            string whoPaid = GetBuyer(buyersList);
+            string whoPaid = HelpersMethods.GetBuyer(buyersList);
 
             decimal price = HelpersMethods.GetCost();
 
@@ -174,43 +174,6 @@ namespace HomeBudget.App.Concrete
             }
 
             return personWhoPays;
-        }
-
-        private string GetBuyer(List<Buyer> buyersList)
-        {
-            Console.WriteLine("Who paid for this shopping (choose number):");
-            foreach (var item in buyersList)
-            {
-                Console.WriteLine($"{item.Id}. {item.Name}");
-            }
-
-            bool buyerFound = false;
-            string whoPaid = "";
-
-            while (!buyerFound)
-            {
-                whoPaid = Console.ReadLine();
-                int whoPaidInt;
-                if (int.TryParse(whoPaid, out whoPaidInt))
-                {
-                    var selectedBuyer = buyersList.FirstOrDefault(buyer => buyer.Id == whoPaidInt);
-                    if (selectedBuyer != null)
-                    {
-                        whoPaid = selectedBuyer.Name;
-                        buyerFound = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Choose valid number.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid number.");
-                }
-            }
-
-            return whoPaid;
         }
 
         private List<Expense> GetCurrentMonthExpenses(List<Expense> items, int currentYear, int currentMonth)
