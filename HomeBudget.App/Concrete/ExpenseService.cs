@@ -119,7 +119,7 @@ namespace HomeBudget.App.Concrete
             }
         }
 
-        public void WhoPays(List<Buyer> buyersList)
+        public string WhoPays(List<Buyer> buyersList)
         {
             decimal lowest = decimal.MaxValue;
             string personWhoPays = "---";
@@ -134,7 +134,6 @@ namespace HomeBudget.App.Concrete
             if (total == 0)
             {
                 Console.WriteLine("There is no shoping this month. Looking in last month...");
-                personWhoPays = "---";
                 currentMonth = currentMonth - 1;
 
                 if (currentMonth == 0)
@@ -165,7 +164,7 @@ namespace HomeBudget.App.Concrete
 
                     Console.WriteLine($"{whoPaid.Name} - paid for: {sumForWhoPaid} PLN");
 
-                    if (sumForWhoPaid <= lowest)
+                    if (sumForWhoPaid < lowest)
                     {
                         lowest = sumForWhoPaid;
                         personWhoPays = whoPaid.Name;
@@ -173,6 +172,8 @@ namespace HomeBudget.App.Concrete
                 }
                 Console.WriteLine($"{personWhoPays} pays for next shopping.");
             }
+
+            return personWhoPays;
         }
 
         private string GetBuyer(List<Buyer> buyersList)
