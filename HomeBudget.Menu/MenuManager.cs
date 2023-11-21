@@ -31,6 +31,12 @@ namespace HomeBudget.Menu
 
         public void RunMenu()
         {
+            if (Items == null || Items.Count == 0)
+            {
+                Console.WriteLine("Menu is empty. Add some items first.");
+                return;
+            }
+
             bool exit = false;
 
             while (!exit)
@@ -52,7 +58,7 @@ namespace HomeBudget.Menu
                 {
                     Console.WriteLine("Wrong choice. Enter valid number.");
                 }
-                Console.WriteLine("\nPress enter to continue...");
+                Console.WriteLine("\nPress any key to continue...");
                 Console.ReadKey();
             }
         }
