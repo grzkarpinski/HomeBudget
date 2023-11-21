@@ -18,12 +18,15 @@ namespace HomeBudget.Menu
         public void Draw()
         {
             Console.WriteLine("MENU:");
-            for (int i = 0; i < Items.Count; i++)
+
+            int optionNumber = 1;
+
+            foreach (var item in Items) 
             {
-                Console.WriteLine($"{i + 1}. {Items[i].Text}");
+                Console.WriteLine($"{optionNumber}. {item.Text}");
+                optionNumber++;
             }
-            Console.WriteLine();
-            Console.Write("Choose option number: ");
+
         }
 
         public void RunMenu()

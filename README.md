@@ -2,5 +2,5 @@
 
 //Console Application - Home Budget
 // TODO:
-// add tests
-// store data in file / database
+// conver loops to linq
+// store data in file --> JSON?
