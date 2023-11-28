@@ -77,15 +77,7 @@ namespace HomeBudget.App.Concrete
 
             if (idToRemove != 0)
             {
-                Expense itemToRemove = null;
-                foreach (Expense item in _items)
-                {
-                    if (item.Id == idToRemove)
-                    {
-                        itemToRemove = item;
-                        break;
-                    }
-                }
+                Expense itemToRemove = _items.FirstOrDefault(item => item.Id == idToRemove);
 
                 if (itemToRemove != null)
                 {
