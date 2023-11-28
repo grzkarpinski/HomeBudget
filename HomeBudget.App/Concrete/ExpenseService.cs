@@ -95,20 +95,22 @@ namespace HomeBudget.App.Concrete
         {
             if (_items.Count == 0)
             {
-                Console.WriteLine("Thera are no shopping added this month.");
+                Console.WriteLine("Thera are no shopping added.");
                 return;
             }
 
-            Console.WriteLine("Monthly shopping:");
-            foreach (var item in _items)
-            {
-                Console.WriteLine($"Id: {item.Id}; " +
-                    $"Name: {item.Name}; " +
-                    $"Category: {item.Category}; " +
-                    $"WhoPaid: {item.WhoPaid}; " +
-                    $"Price: {item.Price}; " +
-                    $"Purchase date: {item.PurchaseDate.ToString("dd-MM-yyyy")}");
-            }
+            Console.WriteLine("Requested shoppings:");
+            _items.ForEach(PrintExpenseDetails);
+        }
+
+        private static void PrintExpenseDetails(Expense item) 
+        {
+            Console.WriteLine($"Id: {item.Id}; " +
+            $"Name: {item.Name}; " +
+            $"Category: {item.Category}; " +
+            $"WhoPaid: {item.WhoPaid}; " +
+            $"Price: {item.Price}; " +
+            $"Purchase date: {item.PurchaseDate.ToString("dd-MM-yyyy")}");
         }
 
         public string WhoPays(List<Buyer> buyersList)
