@@ -45,15 +45,7 @@ namespace HomeBudget.App.Concrete
             Console.WriteLine("Enter Id of buyer you want to remove:");
             if (int.TryParse(Console.ReadLine(), out int idToRemove))
             {
-                Buyer itemToRemove = null;
-                foreach (Buyer item in buyers)
-                {
-                    if (item.Id == idToRemove)
-                    {
-                        itemToRemove = item;
-                        break;
-                    }
-                }
+                Buyer itemToRemove = buyers.FirstOrDefault(x => x.Id == idToRemove);
 
                 if (itemToRemove != null)
                 {
@@ -75,15 +67,7 @@ namespace HomeBudget.App.Concrete
                 return;
             }
 
-            Buyer itemToRemove = null;
-            foreach (Buyer item in buyers)
-            {
-                if (item.Id == idToRemove)
-                {
-                    itemToRemove = item;
-                    break;
-                }
-            }
+            Buyer itemToRemove = buyers.FirstOrDefault(x => x.Id == idToRemove);
 
             if (itemToRemove != null)
             {
