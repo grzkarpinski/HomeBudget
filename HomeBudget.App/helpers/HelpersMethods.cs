@@ -89,25 +89,22 @@ namespace HomeBudget.App.helpers
         public static string GetBuyer(List<Buyer> buyersList)
         {
             Console.WriteLine("Who paid for this shopping (choose number):");
-            foreach (var item in buyersList)
+            foreach (var person in buyersList)
             {
-                Console.WriteLine($"{item.Id}. {item.Name}");
+                Console.WriteLine($"{person.Id}. {person.Name}");
             }
 
-            bool buyerFound = false;
-            string whoPaid = "";
-
-            while (!buyerFound)
+            while (true)
             {
-                whoPaid = Console.ReadLine();
+                string input = Console.ReadLine();
                 int whoPaidInt;
-                if (int.TryParse(whoPaid, out whoPaidInt))
+                if (int.TryParse(input, out whoPaidInt))
                 {
                     var selectedBuyer = buyersList.FirstOrDefault(buyer => buyer.Id == whoPaidInt);
+
                     if (selectedBuyer != null)
                     {
-                        whoPaid = selectedBuyer.Name;
-                        buyerFound = true;
+                        return selectedBuyer.Name;
                     }
                     else
                     {
@@ -119,8 +116,6 @@ namespace HomeBudget.App.helpers
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                 }
             }
-
-            return whoPaid;
         }
     }
 }
