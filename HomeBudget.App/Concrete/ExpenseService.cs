@@ -128,6 +128,7 @@ namespace HomeBudget.App.Concrete
             if (total == 0)
             {
                 Console.WriteLine("There is no shoping this month. Looking in last month...");
+
                 currentMonth = currentMonth - 1;
 
                 if (currentMonth == 0)
@@ -147,14 +148,7 @@ namespace HomeBudget.App.Concrete
             {
                 foreach (Buyer whoPaid in buyersList)
                 {
-                    decimal sumForWhoPaid = 0;
-                    foreach (Expense item in currentMonthItems)
-                    {
-                        if (item.WhoPaid == whoPaid.Name)
-                        {
-                            sumForWhoPaid += item.Price;
-                        }
-                    }
+                    decimal sumForWhoPaid = currentMonthItems.Where(item => item.WhoPaid == whoPaid.Name).Sum(item => item.Price);
 
                     Console.WriteLine($"{whoPaid.Name} - paid for: {sumForWhoPaid} PLN");
 
@@ -167,7 +161,7 @@ namespace HomeBudget.App.Concrete
                 Console.WriteLine($"{personWhoPays} pays for next shopping.");
             }
 
-            return personWhoPays;
+            return "---";
         }
 
         private List<Expense> GetCurrentMonthExpenses(List<Expense> items, int currentYear, int currentMonth)
