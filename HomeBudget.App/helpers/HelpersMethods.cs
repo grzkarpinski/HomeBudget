@@ -62,15 +62,7 @@ namespace HomeBudget.App.helpers
             }
             else 
             {
-                int maxId = int.MinValue;
-                foreach (var item in items)
-                {
-                    if (item.Id > maxId)
-                    {
-                        maxId = item.Id;
-                    }
-                }
-                return maxId + 1;
+                return items.Max(items => items.Id) + 1;
             }
         }
 
