@@ -122,7 +122,7 @@ namespace HomeBudget.App.Concrete
             int currentMonth = DateTime.Now.Month;
 
             List<Expense> currentMonthItems = GetCurrentMonthExpenses(_items, currentYear, currentMonth);
-            decimal total = GetTotalExpenses(currentMonthItems);
+            decimal total = SumExpenses(currentMonthItems);
 
             Console.WriteLine($"Total sum of expenses this month ({DateTime.Now.ToString("MM-yyyy")}): {total} PLN");
             if (total == 0)
@@ -137,7 +137,7 @@ namespace HomeBudget.App.Concrete
                     currentYear = currentYear - 1;
                 }
                 currentMonthItems = GetCurrentMonthExpenses(_items, currentYear, currentMonth);
-                total = GetTotalExpenses(currentMonthItems);
+                total = SumExpenses(currentMonthItems);
                 Console.WriteLine($"Total sum of expenses last month ({DateTime.Now.ToString("MM-yyyy")}): {total} PLN");
             }
             if (total == 0)
@@ -172,13 +172,9 @@ namespace HomeBudget.App.Concrete
 
         }
 
-        private decimal GetTotalExpenses(List<Expense> currentMonthItems)
+        private decimal SumExpenses(List<Expense> currentMonthItems)
         {
-            decimal total = 0;
-            foreach (Expense item in currentMonthItems)
-            {
-                total += item.Price;
-            }
+            decimal total = currentMonthItems.Sum(item => item.Price);
             return total;
         }
     }
