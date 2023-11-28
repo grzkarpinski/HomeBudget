@@ -166,15 +166,8 @@ namespace HomeBudget.App.Concrete
 
         private List<Expense> GetCurrentMonthExpenses(List<Expense> items, int currentYear, int currentMonth)
         {
-            List<Expense> currentMonthItems = new List<Expense>();
+            List<Expense> currentMonthItems = items.Where(item => item.PurchaseDate.Year == currentYear && item.PurchaseDate.Month == currentMonth).ToList();
 
-            foreach (Expense item in items)
-            {
-                if (item.PurchaseDate.Year == currentYear && item.PurchaseDate.Month == currentMonth)
-                {
-                    currentMonthItems.Add(item);
-                }
-            }
             return currentMonthItems;
 
         }
