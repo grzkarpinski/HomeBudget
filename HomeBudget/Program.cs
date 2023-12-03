@@ -3,6 +3,8 @@ using HomeBudget.Domain.Entity;
 using HomeBudget.Menu;
 using System;
 
+const string PATH = @"C:\dev\szkoladotnetu\HomeBudget";
+
 BuyerService buyers = new BuyerService();
 buyers.AddBuyer("Ewelina");
 buyers.AddBuyer("Grzegorz");
