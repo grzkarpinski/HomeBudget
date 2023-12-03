@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HomeBudget.App.helpers;
 using Newtonsoft.Json;
+using HomeBudget.App.managers;
 
 namespace HomeBudget.App.Concrete
 {
@@ -18,6 +19,8 @@ namespace HomeBudget.App.Concrete
         public BuyerService()
         {
             buyers = new List<Buyer>();
+            string path = "buyers.json";
+            buyers = FileManager<Buyer>.LoadListFronFile(path);
         }
         public List<Buyer> getBuyersList()
         {

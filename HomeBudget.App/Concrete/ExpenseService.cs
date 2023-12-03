@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using HomeBudget.App.managers;
 
 namespace HomeBudget.App.Concrete
 {
@@ -19,6 +20,8 @@ namespace HomeBudget.App.Concrete
         public ExpenseService()
         {
             _items = new List<Expense>();
+            string path = "expenses.json";
+            _items = FileManager<Expense>.LoadListFronFile(path);
         }
 
         public List<Expense> GetAllExpenses()
@@ -57,6 +60,7 @@ namespace HomeBudget.App.Concrete
         public void AddExpense(Expense expense)
         {
             _items.Add(expense);
+            FileManager<Expense>.SaveListToFile(_items, "expenses.json");
         }
 
         public void RemoveExpense()
@@ -84,6 +88,7 @@ namespace HomeBudget.App.Concrete
                 {
                     _items.Remove(itemToRemove);
                     Console.WriteLine($"Shopping Id {idToRemove} was removed.");
+                    FileManager<Expense>.SaveListToFile(_items, "expenses.json");
                 }
                 else
                 {

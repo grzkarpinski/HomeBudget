@@ -1,14 +1,20 @@
 ﻿using HomeBudget.App.Concrete;
+using HomeBudget.App.managers;
 using HomeBudget.Domain.Entity;
 using HomeBudget.Menu;
 using System;
-
-const string PATH = @"C:\dev\szkoladotnetu\HomeBudget";
+//TODO:
+// add buyers menager
+// add report for given month
 
 BuyerService buyers = new BuyerService();
-buyers.AddBuyer("Ewelina");
-buyers.AddBuyer("Grzegorz");
+//buyers.AddBuyer("Ewelina");
+//buyers.AddBuyer("Grzegorz");
+
+// file manager
+//string path = "buyers.json";
 List<Buyer> allBuyers = buyers.getBuyersList();
+//FileManager<Buyer>.SaveListToFile(allBuyers, path);
 
 ExpenseService itemService = new ExpenseService();
 
