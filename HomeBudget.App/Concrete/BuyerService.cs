@@ -2,6 +2,7 @@
 using HomeBudget.App.helpers;
 using HomeBudget.App.managers;
 using HomeBudget.Domain.Entity;
+using Newtonsoft.Json.Bson;
 
 namespace HomeBudget.App.Concrete
 {
@@ -18,6 +19,14 @@ namespace HomeBudget.App.Concrete
         public List<Buyer> getBuyersList()
         {
             return buyers;
+        }
+        
+        public void AddBuyer()
+        {
+            Console.WriteLine("Enter name of buyer:");
+            string buyerName = Console.ReadLine();
+            AddBuyer(buyerName);
+
         }
         public void AddBuyer(string name)
         {
@@ -47,7 +56,7 @@ namespace HomeBudget.App.Concrete
                 if (itemToRemove != null)
                 {
                     buyers.Remove(itemToRemove);
-                    Console.WriteLine($"Shopping Id {idToRemove} was removed.");
+                    Console.WriteLine($"Buyer Id {idToRemove} was removed.");
                 }
                 else
                 {
@@ -75,6 +84,23 @@ namespace HomeBudget.App.Concrete
             {
                 Console.WriteLine($"Cannot find Id {idToRemove} on list.");
             }
+        }
+        public void PrintAllBuyers()
+        {
+            if (buyers.Count == 0)
+            {
+                Console.WriteLine("Thera are no buyers added.");
+                return;
+            }
+
+            Console.WriteLine("Buyers in your household:");
+            buyers.ForEach(PrintBuyerDetails);
+        }
+
+        private static void PrintBuyerDetails(Buyer item)
+        {
+            Console.WriteLine($"Id: {item.Id}; " +
+                           $"Name: {item.Name}; ");
         }
     }
 }
