@@ -17,10 +17,10 @@ namespace HomeBudget.App.Concrete
     {
         private List<Expense> _items;
 
-        public ExpenseService()
+        public ExpenseService(string expensesFilePath)
         {
             _items = new List<Expense>();
-            string path = "expenses.json";
+            string path = expensesFilePath;
             _items = FileManager<Expense>.LoadListFronFile(path);
         }
 
@@ -167,7 +167,7 @@ namespace HomeBudget.App.Concrete
                 Console.WriteLine($"{personWhoPays} pays for next shopping.");
             }
 
-            return "---";
+            return personWhoPays;
         }
 
         private List<Expense> GetCurrentMonthExpenses(List<Expense> items, int currentYear, int currentMonth)

@@ -7,16 +7,12 @@ using System;
 // add buyers menager
 // add report for given month
 
-BuyerService buyers = new BuyerService();
-//buyers.AddBuyer("Ewelina");
-//buyers.AddBuyer("Grzegorz");
-
-// file manager
-//string path = "buyers.json";
+string buyersPath = "buyers.json";
+BuyerService buyers = new BuyerService(buyersPath);
 List<Buyer> allBuyers = buyers.getBuyersList();
-//FileManager<Buyer>.SaveListToFile(allBuyers, path);
 
-ExpenseService itemService = new ExpenseService();
+string expensesPath = "expenses.json";
+ExpenseService itemService = new ExpenseService(expensesPath);
 
 MenuManager mainMenu = new MenuManager();
 mainMenu.AddItem("Add Expense", () => itemService.AddExpense(allBuyers));

@@ -18,7 +18,7 @@ namespace HomeBudget.Tests
             buyer.Id = 1;
             buyer.Name = "GRZEGORZ";
 
-            var buyerService = new BuyerService();
+            var buyerService = new BuyerService("");
 
             // Act
             buyerService.AddBuyer("Grzegorz");
@@ -36,7 +36,7 @@ namespace HomeBudget.Tests
             buyer.Id = 1;
             buyer.Name = "GRZEGORZ";
 
-            var buyerService = new BuyerService();
+            var buyerService = new BuyerService("");
 
             // Act
             buyerService.AddBuyer("Grzegorz");
@@ -53,7 +53,7 @@ namespace HomeBudget.Tests
             buyer.Id = 1;
             buyer.Name = "GRZEGORZ";
 
-            var buyerService = new BuyerService();
+            var buyerService = new BuyerService("");
 
             // Act
             buyerService.AddBuyer("Grzegorz");

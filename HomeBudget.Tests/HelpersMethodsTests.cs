@@ -89,12 +89,12 @@ namespace HomeBudget.Tests
         public void GetBuyerTest()
         {
             // Arrange
-            var buyerService = new BuyerService();
+            var buyerService = new BuyerService("");
             buyerService.AddBuyer("Ewelina");
             buyerService.AddBuyer("Grzegorz");
             List<Buyer> allBuyers = buyerService.getBuyersList();
 
-            var expenseService = new ExpenseService();
+            var expenseService = new ExpenseService("");
 
             var input = new StringReader("2");
             Console.SetIn(input);

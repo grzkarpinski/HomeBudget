@@ -34,7 +34,7 @@ namespace HomeBudget.Tests
         public void DrawTest() 
         {
             //Arrange
-            var expectedOutput = "MENU:\r\n1. test text\r\n\r\nChoose option number: ";
+            var expectedOutput = "MENU:\r\n1. test text\r\n";
             var testMenuManager = new MenuManager();
             testMenuManager.AddItem("test text", () => Console.WriteLine("test action"));
             var consoleOutput = new StringWriter();

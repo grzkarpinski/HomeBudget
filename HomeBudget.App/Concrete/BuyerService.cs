@@ -16,10 +16,10 @@ namespace HomeBudget.App.Concrete
     {
         private List<Buyer> buyers;
 
-        public BuyerService()
+        public BuyerService(string buyersFilePath)
         {
             buyers = new List<Buyer>();
-            string path = "buyers.json";
+            string path = buyersFilePath;
             buyers = FileManager<Buyer>.LoadListFronFile(path);
         }
         public List<Buyer> getBuyersList()

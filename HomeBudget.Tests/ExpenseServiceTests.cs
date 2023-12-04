@@ -28,7 +28,7 @@ namespace HomeBudget.Tests
             expense.Price = 100;
             expense.PurchaseDate = new DateTime(2021, 1, 1);
 
-            var expenseService = new ExpenseService();
+            var expenseService = new ExpenseService("");
 
             // Act
             expenseService.AddExpense(expense);
@@ -52,7 +52,7 @@ namespace HomeBudget.Tests
             expense.Price = 100;
             expense.PurchaseDate = new DateTime(2021, 1, 1);
 
-            var expenseService = new ExpenseService();
+            var expenseService = new ExpenseService("");
 
             // Act
             expenseService.AddExpense(expense);
@@ -66,7 +66,7 @@ namespace HomeBudget.Tests
         public void PrintAllExpensesTest()
         {
             // Arrange
-            var expenseService = new ExpenseService();
+            var expenseService = new ExpenseService("");
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
@@ -74,7 +74,7 @@ namespace HomeBudget.Tests
             expenseService.PrintAllExpenses();
 
             // Assert
-            Assert.Equal("Thera are no shopping added this month.", stringWriter.ToString().Trim());
+            Assert.Equal("Thera are no shopping added.", stringWriter.ToString().Trim());
 
         }
 
@@ -90,7 +90,7 @@ namespace HomeBudget.Tests
             expense.Price = 100;
             expense.PurchaseDate = new DateTime(2021, 1, 1);
 
-            var expenseService = new ExpenseService();
+            var expenseService = new ExpenseService("");
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
@@ -99,7 +99,7 @@ namespace HomeBudget.Tests
             expenseService.PrintAllExpenses();
 
             // Assert
-            Assert.Equal("Monthly shopping:\r\nId: 1; Name: Lidl; Category: Grocery; WhoPaid: Grzegorz; Price: 100; Purchase date: 01-01-2021", stringWriter.ToString().Trim());
+            Assert.Equal("Requested shoppings:\r\nId: 1; Name: Lidl; Category: Grocery; WhoPaid: Grzegorz; Price: 100; Purchase date: 01-01-2021", stringWriter.ToString().Trim());
 
         }
 
@@ -108,12 +108,12 @@ namespace HomeBudget.Tests
         public void WhoPaysTest() 
         { 
             // Arrange
-            var buyerService = new BuyerService();
+            var buyerService = new BuyerService("");
             buyerService.AddBuyer("Ewelina");
             buyerService.AddBuyer("Grzegorz");
             List <Buyer> allBuyers = buyerService.getBuyersList();
 
-            var expenseService = new ExpenseService();
+            var expenseService = new ExpenseService("");
             expenseService.AddExpense(new Expense() { Id = 1,
                                                       Name = "Lidl",
                                                       Category = PurchaseCategory.Grocery,

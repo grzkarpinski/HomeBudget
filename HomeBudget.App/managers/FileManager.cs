@@ -15,8 +15,11 @@ namespace HomeBudget.App.managers
             List<T> loadedList = new List<T>();
             if (File.Exists(path)) 
             {
-                string json = File.ReadAllText(path);
-                loadedList = JsonConvert.DeserializeObject<List<T>>(json);
+                using (StreamReader file = File.OpenText(path))
+                {
+                    string json = file.ReadToEnd();
+                    loadedList = JsonConvert.DeserializeObject<List<T>>(json);
+                }
             }
             else 
             {
