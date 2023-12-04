@@ -1,8 +1,6 @@
 ﻿using HomeBudget.App.Concrete;
 using HomeBudget.Domain.Entity;
 using HomeBudget.Menu;
-//TODO:
-// add report for given month
 
 string buyersPath = "buyers.json";
 BuyerService buyers = new BuyerService(buyersPath);
@@ -16,6 +14,7 @@ mainMenu.AddItem("Add Expense", () => itemService.AddExpense(allBuyers));
 mainMenu.AddItem("Remove Expense", () => itemService.RemoveExpense());
 mainMenu.AddItem("Who Pays for Next Shopping?", () => itemService.WhoPays(allBuyers));
 mainMenu.AddItem("List of Expenses", () => itemService.PrintAllExpenses());
+mainMenu.AddItem("Monthly Report", () => itemService.generateMonthlyReport());
 mainMenu.AddItem("Buyers List", () => buyers.PrintAllBuyers());
 mainMenu.AddItem("Add Buyer", () => buyers.AddBuyer());
 mainMenu.AddItem("Remove Buyer", () => buyers.RemoveBuyer());

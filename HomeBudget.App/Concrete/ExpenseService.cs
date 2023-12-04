@@ -109,7 +109,7 @@ namespace HomeBudget.App.Concrete
             $"Name: {item.Name}; " +
             $"Category: {item.Category}; " +
             $"WhoPaid: {item.WhoPaid}; " +
-            $"Price: {item.Price}; " +
+            $"Price: {item.Price} PLN; " +
             $"Purchase date: {item.PurchaseDate.ToString("dd-MM-yyyy")}");
         }
 
@@ -155,6 +155,26 @@ namespace HomeBudget.App.Concrete
             }
 
             return personWhoPays;
+        }
+
+        public void generateMonthlyReport() 
+        {
+            Console.WriteLine("Enter month for report (MM-yyyy):");
+            string inputMonth = Console.ReadLine();
+            if (DateTime.TryParse(inputMonth, out DateTime month)) 
+            {
+                List <Expense> monthExpenses = GetCurrentMonthExpenses(_items, month.Year, month.Month);
+
+                if (monthExpenses.Count == 0)
+                {
+                    Console.WriteLine("Thera are no shopping added in month you requested.");
+                    return;
+                }
+
+                Console.WriteLine("Requested shoppings:");
+                monthExpenses.ForEach(PrintExpenseDetails);
+
+            }
         }
 
         private List<Expense> GetCurrentMonthExpenses(List<Expense> items, int currentYear, int currentMonth)
