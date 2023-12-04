@@ -1,15 +1,9 @@
 ﻿using HomeBudget.App.Common;
 using HomeBudget.App.helpers;
+using HomeBudget.App.managers;
 using HomeBudget.Domain.Entity;
 using HomeBudget.Domain.Enums;
 using HomeBudget.Domain.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using HomeBudget.App.managers;
 
 namespace HomeBudget.App.Concrete
 {
@@ -134,14 +128,7 @@ namespace HomeBudget.App.Concrete
             if (total == 0)
             {
                 Console.WriteLine("There is no shoping this month. Looking in last month...");
-
-                currentMonth = currentMonth - 1;
-
-                if (currentMonth == 0)
-                {
-                    currentMonth = 12;
-                    currentYear = currentYear - 1;
-                }
+                (currentYear, currentMonth) = GetPreviousMonth(currentYear, currentMonth);
                 currentMonthItems = GetCurrentMonthExpenses(_items, currentYear, currentMonth);
                 total = SumExpenses(currentMonthItems);
                 Console.WriteLine($"Total sum of expenses last month ({DateTime.Now.ToString("MM-yyyy")}): {total} PLN");
@@ -182,6 +169,15 @@ namespace HomeBudget.App.Concrete
         {
             decimal total = currentMonthItems.Sum(item => item.Price);
             return total;
+        }
+
+        private (int Year, int Month) GetPreviousMonth(int year, int month)
+        {
+            if (month == 1)
+            {
+                return (year - 1, 12);
+            }
+            return (year, month - 1);
         }
     }
 }

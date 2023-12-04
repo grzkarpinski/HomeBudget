@@ -1,14 +1,7 @@
-﻿using HomeBudget.App.Abstract;
-using HomeBudget.App.Common;
-using HomeBudget.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HomeBudget.App.Common;
 using HomeBudget.App.helpers;
-using Newtonsoft.Json;
 using HomeBudget.App.managers;
+using HomeBudget.Domain.Entity;
 
 namespace HomeBudget.App.Concrete
 {

@@ -1,8 +1,6 @@
 ﻿using HomeBudget.App.Concrete;
-using HomeBudget.App.managers;
 using HomeBudget.Domain.Entity;
 using HomeBudget.Menu;
-using System;
 //TODO:
 // add buyers menager
 // add report for given month
