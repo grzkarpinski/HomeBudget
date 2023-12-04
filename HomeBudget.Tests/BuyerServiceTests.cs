@@ -17,7 +17,7 @@ namespace HomeBudget.Tests
             // Arrange
             var buyer = new Buyer();
             buyer.Id = 1;
-            buyer.Name = "GRZEGORZ";
+            buyer.Name = "Grzegorz";
 
             var buyerService = new BuyerService("");
 
@@ -25,7 +25,7 @@ namespace HomeBudget.Tests
             buyerService.AddBuyer("Grzegorz");
 
             // Assert
-            Assert.Equal("GRZEGORZ", buyerService.getBuyersList()[0].Name);
+            Assert.Equal("Grzegorz", buyerService.getBuyersList()[0].Name);
             Assert.Equal(1, buyerService.getBuyersList()[0].Id);
         }
 
@@ -35,7 +35,7 @@ namespace HomeBudget.Tests
             // Arrange
             var buyer = new Buyer();
             buyer.Id = 1;
-            buyer.Name = "GRZEGORZ";
+            buyer.Name = "Grzegorz";
 
             var buyerService = new BuyerService("");
 
@@ -52,7 +52,7 @@ namespace HomeBudget.Tests
             // Arrange
             var buyer = new Buyer();
             buyer.Id = 1;
-            buyer.Name = "GRZEGORZ";
+            buyer.Name = "Grzegorz";
 
             var buyerService = new BuyerService("");
 

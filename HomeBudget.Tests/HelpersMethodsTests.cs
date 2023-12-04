@@ -104,7 +104,7 @@ namespace HomeBudget.Tests
             var result = HelpersMethods.GetBuyer(allBuyers);
 
             // Assert
-            Assert.Equal("GRZEGORZ", result);
+            Assert.Equal("Grzegorz", result);
         }
     }
 }

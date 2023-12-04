@@ -82,6 +82,12 @@ namespace HomeBudget.App.helpers
 
         public static string GetBuyer(List<Buyer> buyersList)
         {
+            if (buyersList.Count == 0)
+            {
+                Console.WriteLine("No buyers available. Please add buyers from main menu before recording expenses.");
+                return null;
+            }
+
             Console.WriteLine("Who paid for this shopping (choose number):");
             foreach (var person in buyersList)
             {

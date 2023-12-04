@@ -30,7 +30,7 @@ namespace HomeBudget.App.Concrete
         }
         public void AddBuyer(string name)
         {
-            string buyerName = name.ToUpper();
+            string buyerName = name;
 
             Buyer newBuyer = new Buyer()
             {
