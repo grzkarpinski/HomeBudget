@@ -34,7 +34,7 @@ namespace HomeBudget.App.Concrete
 
             Buyer newBuyer = new Buyer()
             {
-                Id = HelpersMethods.GenerateNextId(buyers),
+                Id = IdService.GenerateNextId(buyers),
                 Name = buyerName,
             };
             buyers.Add(newBuyer);

@@ -4,9 +4,9 @@ using HomeBudget.Domain.Entity;
 
 namespace HomeBudget.App.helpers
 {
-    public class HelpersMethods: HelpersMethodsBase
+    public class UserInputMethods: HelpersMethodsBase
     {
-        public static DateTime GetDate()
+        public static DateTime GetInputDate()
         {
             DateTime purchaseDate;
 
@@ -46,18 +46,6 @@ namespace HomeBudget.App.helpers
                 }
             }
             return price;
-        }
-
-        public static int GenerateNextId<T>(List<T> items) where T : BaseEntity 
-        {
-            if (items.Count == 0) 
-            {
-                return 1;
-            }
-            else 
-            {
-                return items.Max(items => items.Id) + 1;
-            }
         }
 
         public static string GetExpenseName()

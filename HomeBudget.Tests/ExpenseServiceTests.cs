@@ -68,11 +68,12 @@ namespace HomeBudget.Tests
         {
             // Arrange
             var expenseService = new ExpenseService("");
+            var expenses = expenseService.GetAllExpenses();
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
             // Act
-            expenseService.PrintAllExpenses();
+            expenseService.PrintAllExpenses(expenses);
 
             // Assert
             Assert.Equal("Thera are no shopping added.", stringWriter.ToString().Trim());
@@ -92,15 +93,16 @@ namespace HomeBudget.Tests
             expense.PurchaseDate = new DateTime(2021, 1, 1);
 
             var expenseService = new ExpenseService("");
+            var expenses = expenseService.GetAllExpenses();
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
             // Act
             expenseService.AddExpense(expense);
-            expenseService.PrintAllExpenses();
+            expenseService.PrintAllExpenses(expenses);
 
             // Assert
-            Assert.Equal("Requested shoppings:\r\nId: 1; Name: Lidl; Category: Grocery; WhoPaid: Grzegorz; Price: 100; Purchase date: 01-01-2021", stringWriter.ToString().Trim());
+            Assert.Equal("Requested shoppings:\r\nId: 1; Name: Lidl; Category: Grocery; WhoPaid: Grzegorz; Price: 100 PLN; Purchase date: 01-01-2021", stringWriter.ToString().Trim());
 
         }
 
@@ -115,6 +117,8 @@ namespace HomeBudget.Tests
             List <Buyer> allBuyers = buyerService.getBuyersList();
 
             var expenseService = new ExpenseService("");
+            var expenses = expenseService.GetAllExpenses();
+
             expenseService.AddExpense(new Expense() { Id = 1,
                                                       Name = "Lidl",
                                                       Category = PurchaseCategory.Grocery,
@@ -122,10 +126,10 @@ namespace HomeBudget.Tests
                                                       Price = 100,
                                                       PurchaseDate = DateTime.Now });
             // Act
-            var result = expenseService.WhoPays(allBuyers);
+            var result = expenseService.WhoPays(allBuyers, expenses);
 
             // Assert
-            Assert.Equal("EWELINA", result);
+            Assert.Equal("Ewelina", result);
         }
     }
 }

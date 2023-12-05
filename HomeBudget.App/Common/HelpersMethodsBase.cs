@@ -5,10 +5,6 @@ namespace HomeBudget.App.Common
 {
     public class HelpersMethodsBase : IHelpersMethods
     {
-        public virtual int GenerateNextId<T>(List<T> items) where T : BaseEntity
-        {
-            return 0;
-        }
 
         public virtual decimal GetCost()
         {

@@ -4,6 +4,7 @@ using HomeBudget.App.managers;
 using HomeBudget.Domain.Entity;
 using HomeBudget.Domain.Enums;
 using HomeBudget.Domain.Helpers;
+using HomeBudget.App.helpers;
 
 namespace HomeBudget.App.Concrete
 {
@@ -25,17 +26,17 @@ namespace HomeBudget.App.Concrete
 
         public void AddExpense(List<Buyer> buyersList)
         {
-            int nextId = HelpersMethods.GenerateNextId(_allExpenses);
+            int nextId = IdService.GenerateNextId(_allExpenses);
 
-            string name = HelpersMethods.GetExpenseName();
+            string name = UserInputMethods.GetExpenseName();
 
             PurchaseCategory category = PurchaseCategoryService.GetCategory();
 
-            string whoPaid = HelpersMethods.GetBuyer(buyersList);
+            string whoPaid = UserInputMethods.GetBuyer(buyersList);
 
-            decimal price = HelpersMethods.GetCost();
+            decimal price = UserInputMethods.GetCost();
 
-            DateTime purchaseDate = HelpersMethods.GetDate();
+            DateTime purchaseDate = UserInputMethods.GetInputDate();
 
             Expense newItem = new Expense
             {
@@ -61,12 +62,12 @@ namespace HomeBudget.App.Concrete
         {
             if (_allExpenses.Count == 0)
             {
-                Console.WriteLine("List is already   empty.");
+                Console.WriteLine("List is already empty.");
                 return;
             }
 
             Console.WriteLine("Enter Id of shopping you want to remove:");
-            int idToRemove = HelpersMethods.GetIdToRemove();
+            int idToRemove = UserInputMethods.GetIdToRemove();
 
             RemoveExpense(idToRemove);
         }
@@ -91,16 +92,16 @@ namespace HomeBudget.App.Concrete
             }
         }
 
-        public void PrintAllExpenses()
+        public void PrintAllExpenses(List<Expense> expenses)
         {
-            if (_allExpenses.Count == 0)
+            if (expenses.Count == 0)
             {
                 Console.WriteLine("Thera are no shopping added.");
                 return;
             }
 
             Console.WriteLine("Requested shoppings:");
-            _allExpenses.ForEach(PrintExpenseDetails);
+            expenses.ForEach(PrintExpenseDetails);
         }
 
         public static void PrintExpenseDetails(Expense item) 
@@ -113,7 +114,7 @@ namespace HomeBudget.App.Concrete
             $"Purchase date: {item.PurchaseDate.ToString("dd-MM-yyyy")}");
         }
 
-        public string WhoPays(List<Buyer> buyersList)
+        public string WhoPays(List<Buyer> buyersList, List<Expense> expenses)
         {
             decimal lowest = decimal.MaxValue;
             string personWhoPays = "---";
@@ -121,15 +122,15 @@ namespace HomeBudget.App.Concrete
             int currentYear = DateTime.Now.Year;
             int currentMonth = DateTime.Now.Month;
 
-            List<Expense> currentMonthItems = GetCurrentMonthExpenses(_allExpenses, currentYear, currentMonth);
+            List<Expense> currentMonthItems = GetMonthyExpenses(expenses, currentYear, currentMonth);
             decimal total = SumExpenses(currentMonthItems);
 
             Console.WriteLine($"Total sum of expenses this month ({DateTime.Now.ToString("MM-yyyy")}): {total} PLN");
             if (total == 0)
             {
                 Console.WriteLine("There is no shoping this month. Looking in last month...");
-                (currentYear, currentMonth) = GetPreviousMonth(currentYear, currentMonth);
-                currentMonthItems = GetCurrentMonthExpenses(_allExpenses, currentYear, currentMonth);
+                (currentYear, currentMonth) = DateTimeService.GetPreviousMonth(currentYear, currentMonth);
+                currentMonthItems = GetMonthyExpenses(expenses, currentYear, currentMonth);
                 total = SumExpenses(currentMonthItems);
                 Console.WriteLine($"Total sum of expenses last month ({DateTime.Now.ToString("MM-yyyy")}): {total} PLN");
             }
@@ -157,13 +158,13 @@ namespace HomeBudget.App.Concrete
             return personWhoPays;
         }
 
-        public void generateMonthlyReport() 
+        public void generateMonthlyReport(List <Expense> expenses) 
         {
             Console.WriteLine("Enter month for report (MM-yyyy):");
             string inputMonth = Console.ReadLine();
             if (DateTime.TryParse(inputMonth, out DateTime month)) 
             {
-                List <Expense> monthExpenses = GetCurrentMonthExpenses(_allExpenses, month.Year, month.Month);
+                List <Expense> monthExpenses = GetMonthyExpenses(expenses, month.Year, month.Month);
 
                 if (monthExpenses.Count == 0)
                 {
@@ -177,27 +178,18 @@ namespace HomeBudget.App.Concrete
             }
         }
 
-        public List<Expense> GetCurrentMonthExpenses(List<Expense> items, int currentYear, int currentMonth)
+        public List<Expense> GetMonthyExpenses(List<Expense> expenses, int year, int month)
         {
-            List<Expense> currentMonthItems = items.Where(item => item.PurchaseDate.Year == currentYear && item.PurchaseDate.Month == currentMonth).ToList();
+            List<Expense> monthlyExpenses = expenses.Where(item => item.PurchaseDate.Year == year && item.PurchaseDate.Month == month).ToList();
 
-            return currentMonthItems;
+            return monthlyExpenses;
 
         }
 
-        public decimal SumExpenses(List<Expense> currentMonthItems)
+        public decimal SumExpenses(List<Expense> expenses)
         {
-            decimal total = currentMonthItems.Sum(item => item.Price);
+            decimal total = expenses.Sum(item => item.Price);
             return total;
-        }
-
-        public (int Year, int Month) GetPreviousMonth(int year, int month)
-        {
-            if (month == 1)
-            {
-                return (year - 1, 12);
-            }
-            return (year, month - 1);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace HomeBudget.Tests
             Console.SetIn(input);
 
             // Act
-            var result = HelpersMethods.GetDate();
+            var result = UserInputMethods.GetInputDate();
 
             // Assert
             Assert.Equal(new DateTime(2020, 01, 01), result);
@@ -36,7 +36,7 @@ namespace HomeBudget.Tests
             Console.SetIn(input);
 
             // Act
-            var result = HelpersMethods.GetCost();
+            var result = UserInputMethods.GetCost();
 
             // Assert
             Assert.Equal(10.00m, result);
@@ -52,7 +52,7 @@ namespace HomeBudget.Tests
             items.Add(new BaseEntity() { Id = 3 });
 
             // Act
-            var result = HelpersMethods.GenerateNextId(items);
+            var result = IdService.GenerateNextId(items);
 
             // Assert
             Assert.Equal(4, result);
@@ -66,7 +66,7 @@ namespace HomeBudget.Tests
             Console.SetIn(input);
 
             // Act
-            var result = HelpersMethods.GetExpenseName();
+            var result = UserInputMethods.GetExpenseName();
 
             // Assert
             Assert.Equal("test", result);
@@ -80,7 +80,7 @@ namespace HomeBudget.Tests
             Console.SetIn(input);
 
             // Act
-            var result = HelpersMethods.GetIdToRemove();
+            var result = UserInputMethods.GetIdToRemove();
 
             // Assert
             Assert.Equal(1, result);
@@ -101,7 +101,7 @@ namespace HomeBudget.Tests
             Console.SetIn(input);
 
             // Act
-            var result = HelpersMethods.GetBuyer(allBuyers);
+            var result = UserInputMethods.GetBuyer(allBuyers);
 
             // Assert
             Assert.Equal("Grzegorz", result);

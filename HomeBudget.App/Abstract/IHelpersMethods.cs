@@ -6,7 +6,6 @@ namespace HomeBudget.App.Abstract
     {
         DateTime GetDate();
         decimal GetCost();
-        int GenerateNextId<T>(List<T> items) where T : BaseEntity;
         string GetExpenseName();
         int GetIdToRemove();
     }
