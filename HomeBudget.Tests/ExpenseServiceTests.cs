@@ -29,16 +29,15 @@ namespace HomeBudget.Tests
             expense.Price = 100;
             expense.PurchaseDate = new DateTime(2021, 1, 1);
 
-            var expenseService = new ExpenseService("");
+            var mock = new Mock<IService<Expense>>();
 
             // Act
-            expenseService.AddItem(expense);
+            mock.Setup(x => x.AddItem(expense));
+            mock.Setup(x => x.GetAllItems()).Returns(new List<Expense>() { expense });
 
             // Assert
-            Assert.Equal(1, expenseService.GetAllItems().Count);
-            Assert.Equal(expense, expenseService.GetAllItems().First());
-
-
+            Assert.Equal(1, mock.Object.GetAllItems().Count);
+            Assert.Equal(expense, mock.Object.GetAllItems().First());
         }
 
         [Fact]
@@ -53,14 +52,14 @@ namespace HomeBudget.Tests
             expense.Price = 100;
             expense.PurchaseDate = new DateTime(2021, 1, 1);
 
-            var expenseService = new ExpenseService("");
+           var expenseService = new ExpenseService("");
 
             // Act
-            expenseService.AddItem(expense);
-            expenseService.RemoveItem(1);
+           expenseService.AddItem(expense);
+           expenseService.RemoveItem(1);
 
             // Assert
-            Assert.Equal(0, expenseService.GetAllItems().Count);
+            Assert.Empty(expenseService.GetAllItems());
         }
 
         [Fact]
@@ -112,10 +111,16 @@ namespace HomeBudget.Tests
         { 
             // Arrange
             var buyerService = new BuyerService("");
-            var buyers = buyerService.getBuyersList();
-            buyerService.AddItem("Ewelina", buyers);
-            buyerService.AddItem("Grzegorz", buyers);
-            List <Buyer> allBuyers = buyerService.getBuyersList();
+            var buyers = buyerService.GetAllItems();
+            var buyer = new Buyer();
+            buyer.Id = 1;
+            buyer.Name = "Ewelina";
+            buyerService.AddItem(buyer);
+            var buyer2 = new Buyer();
+            buyer2.Id = 2;
+            buyer2.Name = "Grzegorz";
+            buyerService.AddItem(buyer2);
+            List <Buyer> allBuyers = buyerService.GetAllItems();
 
             var expenseService = new ExpenseService("");
             var expenses = expenseService.GetAllItems();

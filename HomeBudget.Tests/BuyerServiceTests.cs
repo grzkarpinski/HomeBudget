@@ -20,14 +20,14 @@ namespace HomeBudget.Tests
             buyer.Name = "Grzegorz";
 
             var buyerService = new BuyerService("");
-            var buyers = buyerService.getBuyersList();
+            var buyers = buyerService.GetAllItems();
 
             // Act
-            buyerService.AddItem("Grzegorz", buyers);
+            buyerService.AddItem(buyer);
 
             // Assert
-            Assert.Equal("Grzegorz", buyerService.getBuyersList()[0].Name);
-            Assert.Equal(1, buyerService.getBuyersList()[0].Id);
+            Assert.Equal("Grzegorz", buyerService.GetAllItems()[0].Name);
+            Assert.Equal(1, buyerService.GetAllItems()[0].Id);
         }
 
         [Fact]
@@ -39,13 +39,13 @@ namespace HomeBudget.Tests
             buyer.Name = "Grzegorz";
 
             var buyerService = new BuyerService("");
-            var buyers = buyerService.getBuyersList();
+            var buyers = buyerService.GetAllItems();
 
             // Act
-            buyerService.AddItem("Grzegorz", buyers);
+            buyerService.AddItem(buyer);
 
             // Assert
-            Assert.Equal(1, buyerService.getBuyersList().Count);
+            Assert.Equal(1, buyerService.GetAllItems().Count);
         }
 
         [Fact]
@@ -57,14 +57,14 @@ namespace HomeBudget.Tests
             buyer.Name = "Grzegorz";
 
             var buyerService = new BuyerService("");
-            var buyers = buyerService.getBuyersList();
+            var buyers = buyerService.GetAllItems();
 
             // Act
-            buyerService.AddItem("Grzegorz", buyers);
+            buyerService.AddItem(buyer);
             buyerService.RemoveItem(1);
 
             // Assert
-            Assert.Equal(0, buyerService.getBuyersList().Count);
+            Assert.Equal(0, buyerService.GetAllItems().Count);
         }
     }
 }

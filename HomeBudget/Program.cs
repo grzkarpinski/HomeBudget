@@ -4,7 +4,7 @@ using HomeBudget.Menu;
 
 string buyersPath = "buyers.json";
 BuyerService buyers = new BuyerService(buyersPath);
-List<Buyer> allBuyers = buyers.getBuyersList();
+List<Buyer> allBuyers = buyers.GetAllItems();
 
 string expensesPath = "expenses.json";
 ExpenseService itemService = new ExpenseService(expensesPath);

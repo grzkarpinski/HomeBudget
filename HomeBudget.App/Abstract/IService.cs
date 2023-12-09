@@ -4,7 +4,7 @@
     {
         public List<T> Items { get; set; }
         public List<T> GetAllItems();
-        public void AddItem();
-        public void RemoveItem();
+        public void AddItem(T item);
+        public void RemoveItem(int id);
     }
 }

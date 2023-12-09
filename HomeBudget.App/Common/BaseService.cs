@@ -10,7 +10,7 @@ namespace HomeBudget.App.Common
         {
             Items = new List<T>();
         }
-        public virtual void AddItem()
+        public virtual void AddItem(T item)
         {
         }
 
@@ -19,7 +19,7 @@ namespace HomeBudget.App.Common
             return Items;
         }
 
-        public virtual void RemoveItem()
+        public virtual void RemoveItem(int id)
         {
         }
     }

@@ -19,7 +19,7 @@ namespace HomeBudget.App.Concrete
             _allExpenses = FileManager<Expense>.LoadListFronFile(path);
         }
 
-        public List<Expense> GetAllItems()
+        override public List<Expense> GetAllItems()
         {
             return _allExpenses;
         }
@@ -53,7 +53,7 @@ namespace HomeBudget.App.Concrete
 
         }
 
-        public void AddItem(Expense expense)
+        override public void AddItem(Expense expense)
         {
             _allExpenses.Add(expense);
         }
@@ -73,7 +73,7 @@ namespace HomeBudget.App.Concrete
             FileManager<Expense>.SaveListToFile(_allExpenses, "expenses.json");
         }
 
-        public void RemoveItem(int idToRemove)
+        override public void RemoveItem(int idToRemove)
         {
 
             if (idToRemove != 0)

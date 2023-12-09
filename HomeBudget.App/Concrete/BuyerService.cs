@@ -16,7 +16,7 @@ namespace HomeBudget.App.Concrete
             string path = buyersFilePath;
             buyers = FileManager<Buyer>.LoadListFronFile(path);
         }
-        public List<Buyer> getBuyersList()
+        override public List<Buyer> GetAllItems()
         {
             return buyers;
         }
@@ -25,21 +25,19 @@ namespace HomeBudget.App.Concrete
         {
             Console.WriteLine("Enter name of buyer:");
             string buyerName = Console.ReadLine();
-            AddItem(buyerName,buyers);
-            FileManager<Buyer>.SaveListToFile(buyers, "buyers.json");
-
-        }
-        public void AddItem(string name, List<Buyer> buyers)
-        {
-            string buyerName = name;
-
             Buyer newBuyer = new Buyer()
             {
                 Id = IdService.GenerateNextId(buyers),
                 Name = buyerName,
             };
-            buyers.Add(newBuyer);
 
+            AddItem(newBuyer);
+            FileManager<Buyer>.SaveListToFile(buyers, "buyers.json");
+
+        }
+        override public void AddItem(Buyer buyer)
+        {
+            buyers.Add(buyer);
         }
         public void RemoveBuyer()
         {
@@ -68,7 +66,7 @@ namespace HomeBudget.App.Concrete
             }
         }
 
-        public void RemoveItem(int idToRemove)
+        override public void RemoveItem(int idToRemove)
         {
             if (buyers.Count == 0)
             {
