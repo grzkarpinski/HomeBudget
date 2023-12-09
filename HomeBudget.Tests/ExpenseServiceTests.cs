@@ -32,11 +32,11 @@ namespace HomeBudget.Tests
             var expenseService = new ExpenseService("");
 
             // Act
-            expenseService.AddExpense(expense);
+            expenseService.AddItem(expense);
 
             // Assert
-            Assert.Equal(1, expenseService.GetAllExpenses().Count);
-            Assert.Equal(expense, expenseService.GetAllExpenses().First());
+            Assert.Equal(1, expenseService.GetAllItems().Count);
+            Assert.Equal(expense, expenseService.GetAllItems().First());
 
 
         }
@@ -56,11 +56,11 @@ namespace HomeBudget.Tests
             var expenseService = new ExpenseService("");
 
             // Act
-            expenseService.AddExpense(expense);
-            expenseService.RemoveExpense(1);
+            expenseService.AddItem(expense);
+            expenseService.RemoveItem(1);
 
             // Assert
-            Assert.Equal(0, expenseService.GetAllExpenses().Count);
+            Assert.Equal(0, expenseService.GetAllItems().Count);
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace HomeBudget.Tests
         {
             // Arrange
             var expenseService = new ExpenseService("");
-            var expenses = expenseService.GetAllExpenses();
+            var expenses = expenseService.GetAllItems();
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
@@ -93,12 +93,12 @@ namespace HomeBudget.Tests
             expense.PurchaseDate = new DateTime(2021, 1, 1);
 
             var expenseService = new ExpenseService("");
-            var expenses = expenseService.GetAllExpenses();
+            var expenses = expenseService.GetAllItems();
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
             // Act
-            expenseService.AddExpense(expense);
+            expenseService.AddItem(expense);
             expenseService.PrintAllExpenses(expenses);
 
             // Assert
@@ -113,14 +113,14 @@ namespace HomeBudget.Tests
             // Arrange
             var buyerService = new BuyerService("");
             var buyers = buyerService.getBuyersList();
-            buyerService.AddBuyer("Ewelina", buyers);
-            buyerService.AddBuyer("Grzegorz", buyers);
+            buyerService.AddItem("Ewelina", buyers);
+            buyerService.AddItem("Grzegorz", buyers);
             List <Buyer> allBuyers = buyerService.getBuyersList();
 
             var expenseService = new ExpenseService("");
-            var expenses = expenseService.GetAllExpenses();
+            var expenses = expenseService.GetAllItems();
 
-            expenseService.AddExpense(new Expense() { Id = 1,
+            expenseService.AddItem(new Expense() { Id = 1,
                                                       Name = "Lidl",
                                                       Category = PurchaseCategory.Grocery,
                                                       WhoPaid = "Grzegorz",

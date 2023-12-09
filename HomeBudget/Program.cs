@@ -8,7 +8,7 @@ List<Buyer> allBuyers = buyers.getBuyersList();
 
 string expensesPath = "expenses.json";
 ExpenseService itemService = new ExpenseService(expensesPath);
-List<Expense> allExpenses = itemService.GetAllExpenses();
+List<Expense> allExpenses = itemService.GetAllItems();
 
 MenuManager mainMenu = new MenuManager();
 mainMenu.AddItem("Add Expense", () => itemService.AddExpense(allBuyers));

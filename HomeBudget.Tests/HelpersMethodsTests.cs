@@ -92,8 +92,8 @@ namespace HomeBudget.Tests
             // Arrange
             var buyerService = new BuyerService("");
             var buyers = buyerService.getBuyersList();
-            buyerService.AddBuyer("Ewelina", buyers);
-            buyerService.AddBuyer("Grzegorz", buyers);
+            buyerService.AddItem("Ewelina", buyers);
+            buyerService.AddItem("Grzegorz", buyers);
             List<Buyer> allBuyers = buyerService.getBuyersList();
 
             var expenseService = new ExpenseService("");

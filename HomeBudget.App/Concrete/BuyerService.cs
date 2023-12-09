@@ -25,11 +25,11 @@ namespace HomeBudget.App.Concrete
         {
             Console.WriteLine("Enter name of buyer:");
             string buyerName = Console.ReadLine();
-            AddBuyer(buyerName,buyers);
+            AddItem(buyerName,buyers);
             FileManager<Buyer>.SaveListToFile(buyers, "buyers.json");
 
         }
-        public void AddBuyer(string name, List<Buyer> buyers)
+        public void AddItem(string name, List<Buyer> buyers)
         {
             string buyerName = name;
 
@@ -68,7 +68,7 @@ namespace HomeBudget.App.Concrete
             }
         }
 
-        public void RemoveBuyer(int idToRemove)
+        public void RemoveItem(int idToRemove)
         {
             if (buyers.Count == 0)
             {

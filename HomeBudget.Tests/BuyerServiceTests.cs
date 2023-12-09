@@ -23,7 +23,7 @@ namespace HomeBudget.Tests
             var buyers = buyerService.getBuyersList();
 
             // Act
-            buyerService.AddBuyer("Grzegorz", buyers);
+            buyerService.AddItem("Grzegorz", buyers);
 
             // Assert
             Assert.Equal("Grzegorz", buyerService.getBuyersList()[0].Name);
@@ -42,7 +42,7 @@ namespace HomeBudget.Tests
             var buyers = buyerService.getBuyersList();
 
             // Act
-            buyerService.AddBuyer("Grzegorz", buyers);
+            buyerService.AddItem("Grzegorz", buyers);
 
             // Assert
             Assert.Equal(1, buyerService.getBuyersList().Count);
@@ -60,8 +60,8 @@ namespace HomeBudget.Tests
             var buyers = buyerService.getBuyersList();
 
             // Act
-            buyerService.AddBuyer("Grzegorz", buyers);
-            buyerService.RemoveBuyer(1);
+            buyerService.AddItem("Grzegorz", buyers);
+            buyerService.RemoveItem(1);
 
             // Assert
             Assert.Equal(0, buyerService.getBuyersList().Count);

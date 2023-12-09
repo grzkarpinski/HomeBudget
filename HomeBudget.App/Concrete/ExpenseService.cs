@@ -19,7 +19,7 @@ namespace HomeBudget.App.Concrete
             _allExpenses = FileManager<Expense>.LoadListFronFile(path);
         }
 
-        public List<Expense> GetAllExpenses()
+        public List<Expense> GetAllItems()
         {
             return _allExpenses;
         }
@@ -48,12 +48,12 @@ namespace HomeBudget.App.Concrete
                 PurchaseDate = purchaseDate
             };
 
-            AddExpense(newItem);
+            AddItem(newItem);
             FileManager<Expense>.SaveListToFile(_allExpenses, "expenses.json");
 
         }
 
-        public void AddExpense(Expense expense)
+        public void AddItem(Expense expense)
         {
             _allExpenses.Add(expense);
         }
@@ -69,11 +69,11 @@ namespace HomeBudget.App.Concrete
             Console.WriteLine("Enter Id of shopping you want to remove:");
             int idToRemove = UserInputMethods.GetIdToRemove();
 
-            RemoveExpense(idToRemove);
+            RemoveItem(idToRemove);
             FileManager<Expense>.SaveListToFile(_allExpenses, "expenses.json");
         }
 
-        public void RemoveExpense(int idToRemove)
+        public void RemoveItem(int idToRemove)
         {
 
             if (idToRemove != 0)
