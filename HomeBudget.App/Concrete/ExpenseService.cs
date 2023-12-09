@@ -49,13 +49,13 @@ namespace HomeBudget.App.Concrete
             };
 
             AddExpense(newItem);
+            FileManager<Expense>.SaveListToFile(_allExpenses, "expenses.json");
 
         }
 
         public void AddExpense(Expense expense)
         {
             _allExpenses.Add(expense);
-            FileManager<Expense>.SaveListToFile(_allExpenses, "expenses.json");
         }
 
         public void RemoveExpense()
@@ -70,6 +70,7 @@ namespace HomeBudget.App.Concrete
             int idToRemove = UserInputMethods.GetIdToRemove();
 
             RemoveExpense(idToRemove);
+            FileManager<Expense>.SaveListToFile(_allExpenses, "expenses.json");
         }
 
         public void RemoveExpense(int idToRemove)
@@ -83,7 +84,6 @@ namespace HomeBudget.App.Concrete
                 {
                     _allExpenses.Remove(itemToRemove);
                     Console.WriteLine($"Shopping Id {idToRemove} was removed.");
-                    FileManager<Expense>.SaveListToFile(_allExpenses, "expenses.json");
                 }
                 else
                 {

@@ -26,6 +26,7 @@ namespace HomeBudget.App.Concrete
             Console.WriteLine("Enter name of buyer:");
             string buyerName = Console.ReadLine();
             AddBuyer(buyerName,buyers);
+            FileManager<Buyer>.SaveListToFile(buyers, "buyers.json");
 
         }
         public void AddBuyer(string name, List<Buyer> buyers)
@@ -56,7 +57,9 @@ namespace HomeBudget.App.Concrete
                 if (itemToRemove != null)
                 {
                     buyers.Remove(itemToRemove);
+                    FileManager<Buyer>.SaveListToFile(buyers, "buyers.json");
                     Console.WriteLine($"Buyer Id {idToRemove} was removed.");
+
                 }
                 else
                 {
