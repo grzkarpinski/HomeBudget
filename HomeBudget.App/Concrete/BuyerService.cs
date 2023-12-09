@@ -25,10 +25,10 @@ namespace HomeBudget.App.Concrete
         {
             Console.WriteLine("Enter name of buyer:");
             string buyerName = Console.ReadLine();
-            AddBuyer(buyerName);
+            AddBuyer(buyerName,buyers);
 
         }
-        public void AddBuyer(string name)
+        public void AddBuyer(string name, List<Buyer> buyers)
         {
             string buyerName = name;
 
